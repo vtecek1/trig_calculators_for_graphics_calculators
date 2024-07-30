@@ -52,5 +52,5 @@ while input('go: ') == 'y':
                 angles.append(angle2)
             start += 90
 
-
+    print('here are all possible points within the given range:')
     print(angles)
