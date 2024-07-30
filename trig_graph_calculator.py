@@ -10,13 +10,12 @@ while input('go: ') == 'y':
     start = 180
     angles = []
 
-    if unit == 'deg':
+    if unit == 'd':
         number = number
-    elif unit == 'rad':
-        number = number * (180/math.pi)
+    elif unit == 'r':
+        number = float(number) * (180/math.pi)
         
-    #number = float(number) * (math.pi/180)
-    if function == 'sin':
+    if function == 's':
         angle1 = (180/math.pi)*math.asin(float(number))
         angles.append(angle1)
         while int(start) <= int(Range):
@@ -29,8 +28,8 @@ while input('go: ') == 'y':
                 angle2 = start + angle1
                 angles.append(angle2)
             start += 90
-    if function == 'cos':
-        angle1 = (180/math.pi)*math.ascos(float(number))
+    if function == 'c':
+        angle1 = (180/math.pi)*math.acos(float(number))
         angles.append(angle1)
         while int(start) <= int(Range):
             if start % 180 == 0:
@@ -40,7 +39,7 @@ while input('go: ') == 'y':
                 angle2 = start + angle1
                 angles.append(angle2)
             start += 90
-    if function == 'tan':
+    if function == 't':
         angle1 = (180/math.pi)*math.atan(float(number))
         angles.append(angle1)
         while int(start) <= int(Range):
