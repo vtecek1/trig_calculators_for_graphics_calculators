@@ -1,5 +1,24 @@
 import math
 
+
+def convertRadians(angle, unit):
+    if unit == 'd':
+        angle = angle
+    elif unit == 'r':
+        angle = float(angle) * (math.pi/180)
+    return angle
+    
+def angleAdd(angle, angleOrg, angles):
+    angle = start + angleOrg
+    angle = convertRadians(angle, unit)
+    angles.append(angle)
+
+def angleSub( angleOrg, angles, unit):
+    angle = start - angleOrg
+    angle = convertRadians(angle, unit)
+    angles.append(angle)
+    return angles
+
 while input('go: ') == 'y':
 
     function = input('sin, cos or tan: ')
@@ -9,47 +28,49 @@ while input('go: ') == 'y':
 
     start = 180
     angles = []
-
-    if unit == 'd':
-        number = number
-    elif unit == 'r':
-        number = float(number) * (180/math.pi)
         
+    if Range == '':
+        Range = 360    
+        
+    if float(number) < 0:
+        number = number * -1
+        set = 1
+    else:
+        set = 0
+    
     if function == 's':
-        angle1 = (180/math.pi)*math.asin(float(number))
-        angles.append(angle1)
+        angle1 = (180/math.pi) * math.asin(float(number))
+        angles.append(convertRadians(angle1, unit))
         while int(start) <= int(Range):
-            print(start)
             if start % 180 == 0:
-                print(4)
-                angle2 = start - angle1
-                angles.append(angle2)
+                angles = angleSub(angle1, angles, unit)
             else:
-                angle2 = start + angle1
-                angles.append(angle2)
+                angles = angleAdd(angle1, angles, unit)
             start += 90
     if function == 'c':
-        angle1 = (180/math.pi)*math.acos(float(number))
-        angles.append(angle1)
+        angle1 = (180/math.pi) * math.acos(float(number))
+        angles.append(convertRadians(angle1, unit))
         while int(start) <= int(Range):
             if start % 180 == 0:
-                angle2 = start - angle1
-                angles.append(angle2)
+                angles = angleSub(angle1, angles, unit)
             else:
-                angle2 = start + angle1
-                angles.append(angle2)
+                angles = angleAdd(angle1, angles, unit)
             start += 90
     if function == 't':
-        angle1 = (180/math.pi)*math.atan(float(number))
-        angles.append(angle1)
+        angle1 = (180/math.pi) * math.atan(float(number))
+        angles.append(convertRadians(angle1, unit))
         while int(start) <= int(Range):
             if start % 180 == 0:
-                angle2 = start - angle1
-                angles.append(angle2)
+                angles = angleSub(angle1, angles, unit)
             else:
-                angle2 = start + angle1
-                angles.append(angle2)
+                angles = angleAdd(angle1, angles, unit)
             start += 90
-
+    
     print('here are all possible points within the given range:')
+    if set == 0:
+        angles.pop(1)
+        angles.pop(2)
+    elif set == 1:
+        angles.pop(0)
+        angles.pop(1)
     print(angles)
