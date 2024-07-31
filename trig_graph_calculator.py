@@ -8,12 +8,13 @@ def convertRadians(angle, unit):
         angle = float(angle) * (math.pi/180)
     return angle
     
-def angleAdd(angle, angleOrg, angles):
+def angleAdd(angleOrg, angles, unit):
     angle = start + angleOrg
     angle = convertRadians(angle, unit)
     angles.append(angle)
+    return angles
 
-def angleSub( angleOrg, angles, unit):
+def angleSub(angleOrg, angles, unit):
     angle = start - angleOrg
     angle = convertRadians(angle, unit)
     angles.append(angle)
@@ -31,11 +32,12 @@ while input('go: ') == 'y':
         
     if Range == '':
         Range = 360    
-        
+    
     if float(number) < 0:
-        number = number * -1
+        number = abs(float(number))
         set = 1
     else:
+        number = number
         set = 0
     
     if function == 's':
@@ -67,10 +69,12 @@ while input('go: ') == 'y':
             start += 90
     
     print('here are all possible points within the given range:')
+    angles.sort()
     if set == 0:
-        angles.pop(1)
+        angles.pop(2)
         angles.pop(2)
     elif set == 1:
         angles.pop(0)
-        angles.pop(1)
-    print(angles)
+        angles.pop(0)
+    print(round(angles[0], 2))
+    print(round(angles[1], 2))
